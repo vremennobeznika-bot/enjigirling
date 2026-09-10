@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Календарь инженерных праздников — База данных профессий инженеров</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="eng-calendar-root">
+        <nav class="eng-tabs">
+            <a href="index.html" class="eng-tab">Профессии</a>
+            <a href="calendar.html" class="eng-tab active">Календарь праздников</a>
+            <a href="resources.html" class="eng-tab">Ресурсы сообщества<span class="age-badge">18+</span></a>
+            <a href="dictionary.html" class="eng-tab">Словарь инженера</a>
+            <a href="map.html" class="eng-tab">Карта обучения</a>
+            <a href="calculator.html" class="eng-tab">Калькуляторы</a>
+        </nav>
+
+        <main>
+            <div class="eng-filters">
+                <select id="professionFilter">
+                    <option value="">Все профессии</option>
+                </select>
+                <div class="eng-months-wrap" id="monthFilter"></div>
+                <input type="text" id="searchInput" placeholder="Поиск по названию праздника">
+            </div>
+            <div class="eng-grid" id="calendarGrid"></div>
+            <p class="eng-empty" id="calendarEmpty" style="display:none">Ничего не найдено.</p>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-mission">
+                <p class="footer-mission-text">Этот проект — благотворительный. Он существует лишь благодаря упорству его создательницы.</p>
+                <p class="footer-mission-contact">По всем вопросам: <a href="https://t.me/evosif" class="footer-contact-link" target="_blank" rel="noopener noreferrer">@evosif</a> · <a href="mailto:eva.tselikina@ya.ru" class="footer-contact-link">eva.tselikina@ya.ru</a></p>
+            </div>
+            <div class="footer-links">
+                <a href="https://vk.ru/engigirling" class="footer-btn" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
+                <a href="https://t.me/enjigirling" class="footer-btn" target="_blank" rel="noopener noreferrer">Telegram-канал</a>
+            </div>
+            <div class="footer-donations">
+                <a href="https://web.tribute.tg/d/Mue" class="footer-btn footer-btn--donate" target="_blank" rel="noopener noreferrer">Поддержать (Tribute)</a>
+                <a href="https://pay.cloudtips.ru/p/72472d16" class="footer-btn footer-btn--donate" target="_blank" rel="noopener noreferrer">Поддержать (CloudTips)</a>
+            </div>
+            <div class="footer-theme">
+                <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">🌙</button>
+            </div>
+            <p class="footer-copy">© 2026 — База данных профессий инженеров</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="holiday-map.js"></script>
+    <script src="calendar-data.js"></script>
+    <script src="calendar.js"></script>
+    <script src="theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карта обучения — База данных профессий инженеров</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="eng-calendar-root">
+        <nav class="eng-tabs">
+            <a href="index.html" class="eng-tab">Профессии</a>
+            <a href="calendar.html" class="eng-tab">Календарь праздников</a>
+            <a href="resources.html" class="eng-tab">Ресурсы сообщества<span class="age-badge">18+</span></a>
+            <a href="dictionary.html" class="eng-tab">Словарь инженера</a>
+            <a href="map.html" class="eng-tab active">Карта обучения</a>
+            <a href="calculator.html" class="eng-tab">Калькуляторы</a>
+        </nav>
+
+        <main>
+            <div class="map-intro">
+                <h2 class="map-title">Интерактивная карта инженерного образования</h2>
+                <p class="map-subtitle">Нажмите на федеральный округ, чтобы узнать ведущие инженерные вузы региона и направления подготовки.</p>
+            </div>
+
+            <div class="map-layout">
+                <div class="map-canvas">
+                    <svg id="russiaMap" viewBox="100 60 930 420" class="eng-map-svg" role="img" aria-label="Карта федеральных округов России">
+                        <!-- Северо-Западный -->
+                        <path class="eng-district" data-id="northwest" />
+                        <!-- Центральный -->
+                        <path class="eng-district" data-id="central" />
+                        <!-- Южный -->
+                        <path class="eng-district" data-id="south" />
+                        <!-- Северо-Кавказский -->
+                        <path class="eng-district" data-id="northcaucasus" />
+                        <!-- Приволжский -->
+                        <path class="eng-district" data-id="volga" />
+                        <!-- Уральский -->
+                        <path class="eng-district" data-id="ural" />
+                        <!-- Сибирский -->
+                        <path class="eng-district" data-id="siberia" />
+                        <!-- Дальневосточный -->
+                        <path class="eng-district" data-id="fareast" />
+                    </svg>
+                </div>
+
+                <aside class="map-sidebar">
+                    <button class="eng-btn map-reset" id="mapReset">Сбросить выбор</button>
+                    <div class="map-panel" id="districtInfo"></div>
+                </aside>
+            </div>
+
+            <!-- Льготы и олимпиады (статичная информация) -->
+            <section class="benefits-section">
+                <hr class="eng-divider">
+
+                <h3 class="benefits-heading">Поступление: олимпиады, льготы и особые случаи</h3>
+                <div class="benefits-grid">
+
+                    <article class="benefit-card">
+                        <h4 class="benefit-title">Всероссийская олимпиада школьников (ВсОШ)</h4>
+                        <p>Самый престижный канал поступления. Победители и призёры заключительного этапа по профильному предмету зачисляются без вступительных испытаний (БВИ) в любой вуз страны на соответствующее направление. Льгота подтверждается дипломом и действует 4 года.</p>
+                    </article>
+
+                    <article class="benefit-card">
+                        <h4 class="benefit-title">Перечневые олимпиады</h4>
+                        <p>Перечень олимпиад школьников ежегодно утверждает Минобрнауки. Победа в таких олимпиадах даёт право на льготы при поступлении в конкретные вузы: БВИ, зачёт предмета как 100 баллов ЕГЭ или дополнительные баллы. Объём льготы каждый вуз определяет сам.</p>
+                    </article>
+
+                    <article class="benefit-card">
+                        <h4 class="benefit-title">Олимпиады «Росатом», СПбГУ и др.</h4>
+                        <p>Многие университеты и компании проводят собственные олимпиады по физике, математике, информатике, химии для школьников. Победа даёт льготы при поступлении в конкретный вуз (часто — зачёт за 100 баллов ЕГЭ). Перечни и правила публикуются на сайтах организаторов.</p>
+                    </article>
+
+                    <article class="benefit-card">
+                        <h4 class="benefit-title">Индивидуальные достижения</h4>
+                        <p>За аттестат с отличием, значок ГТО, спортивные разряды, волонтёрскую деятельность и итоговое сочинение начисляются дополнительные баллы к сумме ЕГЭ (обычно до 10). Размер баллов устанавливает каждый вуз.</p>
+                    </article>
+
+                    <article class="benefit-card">
+                        <h4 class="benefit-title">Целевое обучение</h4>
+                        <p>Поступление по целевой квоте от предприятия-заказчика. Студент учится бесплатно, получает поддержку и гарантированное трудоустройство, но после выпуска обязан отработать несколько лет на этом предприятии. Целевые места выделяются в рамках контрольных цифр приёма.</p>
+                    </article>
+
+                    <article class="benefit-card">
+                        <h4 class="benefit-title">Квоты для особых категорий</h4>
+                        <p>Действуют отдельные квоты для детей-сирот, детей-инвалидов, инвалидов I и II групп, ветеранов боевых действий и других льготных категорий. Приём по квоте ведётся без учёта общего конкурса баллов.</p>
+                    </article>
+
+                    <article class="benefit-card">
+                        <h4 class="benefit-title">Бюджетные места</h4>
+                        <p>Часть мест в вузах — бюджетные: обучение бесплатное, студент получает стипендию. Распределение бюджетных мест между направлениями ежегодно устанавливает государство в рамках контрольных цифр приёма.</p>
+                    </article>
+
+                    <article class="benefit-card">
+                        <h4 class="benefit-title">Гранты и стипендии</h4>
+                        <p>Успевающим студентам выплачиваются государственные академические стипендии, за выдающиеся успехи — повышенные (Президентская, Правительственная) и именные стипендии фондов и компаний. Размеры утверждаются ежегодно.</p>
+                    </article>
+
+                    <article class="benefit-card">
+                        <h4 class="benefit-title">Поступление после техникума</h4>
+                        <p>Выпускники колледжей и техникумов поступают в вуз без сдачи ЕГЭ — по внутренним вступительным испытаниям. Во многих вузах доступно обучение по сокращённой (ускоренной) программе с перезачётом пройденных дисциплин.</p>
+                    </article>
+
+                    <article class="benefit-card">
+                        <h4 class="benefit-title">Отсрочка от армии</h4>
+                        <p>Студентам очной формы обучения на бюджетной или платной основе предоставляется отсрочка от призыва на весь срок обучения (при первом получении образования соответствующего уровня).</p>
+                    </article>
+
+                    <article class="benefit-card">
+                        <h4 class="benefit-title">Общежитие</h4>
+                        <p>Иногородним студентам предоставляются места в общежитиях. Порядок распределения и стоимость проживания устанавливаются каждым вузом самостоятельно.</p>
+                    </article>
+
+                    <article class="benefit-card">
+                        <h4 class="benefit-title">Дополнительное образование и курсы</h4>
+                        <p>Помимо основного обучения доступны подготовительные курсы к ЕГЭ и олимпиадам, программы дополнительного профессионального образования (ДПО), повышение квалификации и переподготовка для инженеров.</p>
+                    </article>
+
+                    <article class="benefit-card">
+                        <h4 class="benefit-title">Инженерные школы и кружки</h4>
+                        <p>При многих вузах действуют инженерные школы, кружки робототехники, олимпиадные студии и «инженерные классы». Это помогает заранее определиться с направлением и подготовиться к поступлению.</p>
+                    </article>
+
+                    <article class="benefit-card">
+                        <h4 class="benefit-title">Платное обучение и рассрочка</h4>
+                        <p>На платные места зачисляют без учёта конкурса баллов бюджета, но с минимальными проходными баллами. Многие вузы предлагают скидки за высокие баллы ЕГЭ и возможность оплаты по семестрам.</p>
+                    </article>
+
+                    <article class="benefit-card">
+                        <h4 class="benefit-title">Приём на общих основаниях</h4>
+                        <p>Основной способ поступления — по конкурсу суммы баллов ЕГЭ (русский язык + математика + профильный предмет). Чем выше баллы, тем больше шансов пройти на бюджет. Зачисление проходит по приоритетам в рамках общего и особых конкурсов.</p>
+                    </article>
+
+                    <article class="benefit-card">
+                        <h4 class="benefit-title">Магистратура после бакалавриата</h4>
+                        <p>После 4 лет бакалавриата можно продолжить обучение в магистратуре (2 года) для углубления специализации или смены направления. Поступление в магистратуру — по внутренним экзаменам вуза, есть бюджетные места.</p>
+                    </article>
+
+                </div>
+                <p class="benefits-note">Примечание: перечни олимпиад, размеры льгот, квот и стипендий ежегодно пересматриваются. Актуальные условия на текущий год уточняйте на официальном сайте конкретного вуза или в приёмной комиссии.</p>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-mission">
+                <p class="footer-mission-text">Этот проект — благотворительный. Он существует лишь благодаря упорству его создательницы.</p>
+                <p class="footer-mission-contact">По всем вопросам: <a href="https://t.me/evosif" class="footer-contact-link" target="_blank" rel="noopener noreferrer">@evosif</a> · <a href="mailto:eva.tselikina@ya.ru" class="footer-contact-link">eva.tselikina@ya.ru</a></p>
+            </div>
+            <div class="footer-links">
+                <a href="https://vk.ru/engigirling" class="footer-btn" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
+                <a href="https://t.me/enjigirling" class="footer-btn" target="_blank" rel="noopener noreferrer">Telegram-канал</a>
+            </div>
+            <div class="footer-donations">
+                <a href="https://web.tribute.tg/d/Mue" class="footer-btn footer-btn--donate" target="_blank" rel="noopener noreferrer">Поддержать (Tribute)</a>
+                <a href="https://pay.cloudtips.ru/p/72472d16" class="footer-btn footer-btn--donate" target="_blank" rel="noopener noreferrer">Поддержать (CloudTips)</a>
+            </div>
+            <div class="footer-theme">
+                <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">🌙</button>
+            </div>
+            <p class="footer-copy">© 2026 — База данных профессий инженеров</p>
+        </div>
+    </footer>
+
+    <script src="map-data.js"></script>
+    <script src="map.js"></script>
+    <script src="theme.js"></script>
+</body>
+</html>

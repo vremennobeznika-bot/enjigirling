@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькуляторы — База данных профессий инженеров</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="eng-calendar-root">
+        <nav class="eng-tabs">
+            <a href="index.html" class="eng-tab">Профессии</a>
+            <a href="calendar.html" class="eng-tab">Календарь праздников</a>
+            <a href="resources.html" class="eng-tab">Ресурсы сообщества<span class="age-badge">18+</span></a>
+            <a href="dictionary.html" class="eng-tab">Словарь инженера</a>
+            <a href="map.html" class="eng-tab">Карта обучения</a>
+            <a href="calculator.html" class="eng-tab active">Калькуляторы</a>
+        </nav>
+
+        <main>
+            <div class="calc-section">
+                <h3 class="calc-heading">Калькулятор «Сколько учиться до первой зарплаты»</h3>
+                <p class="calc-subtitle">Выберите путь, укажите, сколько лет уже прошло после школы, и посчитайте, через сколько времени вы начнёте зарабатывать.</p>
+
+                <div class="calc-layout">
+                    <div class="calc-controls">
+                        <div class="calc-field">
+                            <label for="calcPath">Путь</label>
+                            <select id="calcPath">
+                                <option value="college9">Техникум после 9 классов</option>
+                                <option value="college11">Техникум после 11 классов</option>
+                                <option value="college9_uni">Техникум → вуз</option>
+                                <option value="unibach">Вуз: бакалавриат (после 11 классов)</option>
+                                <option value="unispec">Вуз: специалитет (после 11 классов)</option>
+                                <option value="unimaster">Вуз: бакалавриат + магистратура</option>
+                            </select>
+                        </div>
+
+                        <div class="calc-field">
+                            <label for="calcAge">Сколько лет уже прошло после школы / начала пути</label>
+                            <select id="calcAge">
+                                <option value="0">Нисколько, только начинаю</option>
+                                <option value="1">1 год</option>
+                                <option value="2">2 года</option>
+                                <option value="3">3 года</option>
+                                <option value="4">4 года</option>
+                                <option value="5">5 лет</option>
+                                <option value="6">6 лет и больше</option>
+                            </select>
+                        </div>
+
+                        <div class="calc-field">
+                            <label for="calcWork">Когда планируете начать работать</label>
+                            <select id="calcWork">
+                                <option value="after">После выпуска</option>
+                                <option value="during">Во время учёбы (совмещать)</option>
+                            </select>
+                        </div>
+
+                        <div class="calc-result">
+                            <p class="calc-result-label">До первой зарплаты</p>
+                            <p class="calc-result-value" id="calcResultValue">—</p>
+                            <p class="calc-result-hint" id="calcResultHint"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-mission">
+                <p class="footer-mission-text">Этот проект — благотворительный. Он существует лишь благодаря упорству его создательницы.</p>
+                <p class="footer-mission-contact">По всем вопросам: <a href="https://t.me/evosif" class="footer-contact-link" target="_blank" rel="noopener noreferrer">@evosif</a> · <a href="mailto:eva.tselikina@ya.ru" class="footer-contact-link">eva.tselikina@ya.ru</a></p>
+            </div>
+            <div class="footer-links">
+                <a href="https://vk.ru/engigirling" class="footer-btn" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
+                <a href="https://t.me/enjigirling" class="footer-btn" target="_blank" rel="noopener noreferrer">Telegram-канал</a>
+            </div>
+            <div class="footer-donations">
+                <a href="https://web.tribute.tg/d/Mue" class="footer-btn footer-btn--donate" target="_blank" rel="noopener noreferrer">Поддержать (Tribute)</a>
+                <a href="https://pay.cloudtips.ru/p/72472d16" class="footer-btn footer-btn--donate" target="_blank" rel="noopener noreferrer">Поддержать (CloudTips)</a>
+            </div>
+            <div class="footer-theme">
+                <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">🌙</button>
+            </div>
+            <p class="footer-copy">© 2026 — База данных профессий инженеров</p>
+        </div>
+    </footer>
+
+    <script src="map-calc.js"></script>
+    <script src="theme.js"></script>
+</body>
+</html>
