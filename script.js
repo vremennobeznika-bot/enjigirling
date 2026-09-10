@@ -2,23 +2,79 @@ const PROFESSION_CATEGORIES = {
     "civil-engineer": "Строительство",
     "architect-engineer": "Строительство",
     "road-engineer": "Строительство",
+    "bridge-engineer": "Строительство",
+    "tunnel-engineer": "Строительство",
     "mechanical-engineer": "Машиностроение",
-    "power-engineer": "Энергетика"
+    "automotive-engineer": "Машиностроение",
+    "mechatronics-engineer": "Машиностроение",
+    "power-engineer": "Энергетика",
+    "electrical-engineer": "Энергетика",
+    "nuclear-engineer": "Энергетика",
+    "aerospace-engineer": "Авиация и космос",
+    "space-engineer": "Авиация и космос",
+    "chemical-engineer": "Химия и нефтехимия",
+    "oil-gas-engineer": "Химия и нефтехимия",
+    "metallurgical-engineer": "Металлургия",
+    "mining-engineer": "Горное дело",
+    "geophysicist-engineer": "Геология и геофизика",
+    "environmental-engineer": "Экология",
+    "biomedical-engineer": "Биомедицина и биотех",
+    "biotech-engineer": "Биомедицина и биотех",
+    "robotics-engineer": "Робототехника",
+    "railway-engineer": "Железная дорога",
+    "shipbuilding-engineer": "Кораблестроение",
+    "instrumentation-engineer": "АСУ ТП и приборостроение",
+    "metrology-engineer": "Метрология и качество",
+    "quality-engineer": "Метрология и качество",
+    "food-engineer": "Пищевая промышленность",
+    "textile-engineer": "Текстильная промышленность",
+    "forest-engineer": "Лесная промышленность",
+    "telecom-engineer": "Связь и телекоммуникации",
+    "radio-engineer": "Радиотехника и электроника",
+    "microelectronics-engineer": "Радиотехника и электроника",
+    "water-engineer": "Водоснабжение и водоотведение",
+    "lighting-engineer": "Светотехника и оптика",
+    "optics-engineer": "Светотехника и оптика",
+    "laser-engineer": "Светотехника и оптика",
+    "acoustic-engineer": "Акустика",
+    "data-engineer": "IT",
+    "devops-engineer": "IT",
+    "ml-engineer": "IT",
+    "security-engineer": "IT",
+    "cloud-engineer": "IT",
+    "embedded-engineer": "IT",
+    "frontend-engineer": "IT",
+    "backend-engineer": "IT",
+    "qa-engineer": "IT",
+    "mobile-engineer": "IT",
+    "military-engineer": "Военное дело",
+    "polygraph-engineer": "Полиграфия",
+    "materials-engineer": "Материаловедение и нанотехнологии",
+    "nano-engineer": "Материаловедение и нанотехнологии",
+    "civil-defense-engineer": "ГО и ЧС",
+    "geodetic-engineer": "Геодезия и землеустройство",
+    "land-surveyor": "Геодезия и землеустройство",
+    "astronomer-engineer": "Астрономия",
+    "restoration-engineer": "Реставрация",
+    "standardization-engineer": "Стандартизация",
+    "patent-engineer": "Патентоведение"
 };
 
 document.addEventListener('DOMContentLoaded', () => {
     const grid = document.getElementById('professionsGrid');
     const categoriesEl = document.getElementById('categories');
+    const overlay = document.getElementById('modalOverlay');
+    const modalContent = document.getElementById('modalContent');
+    const modalClose = document.getElementById('modalClose');
 
     let activeCategory = 'Все';
 
     function getCategories() {
         const cats = new Set();
         professionsData.forEach(p => {
-            const c = PROFESSION_CATEGORIES[p.id] || 'Прочее';
-            cats.add(c);
+            cats.add(PROFESSION_CATEGORIES[p.id] || 'Прочее');
         });
-        return Array.from(cats).sort();
+        return Array.from(cats).sort((a, b) => a.localeCompare(b, 'ru'));
     }
 
     function renderFilters() {
@@ -41,41 +97,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function buildCard(p) {
         const card = document.createElement('article');
         card.className = 'eng-card';
-        const category = PROFESSION_CATEGORIES[p.id] || 'Прочее';
-        const s = p.stats || {};
-        const sal = p.salary || {};
-        const edu = p.education || {};
-        const growth = p.careerGrowth || [];
-
-        const specialists = s.specialists ? s.specialists.toLocaleString('ru-RU') : '—';
-        const avgAge = s.avgAge ? s.avgAge + ' лет' : '—';
-        const gender = s.genderRatio || '—';
-
         card.innerHTML = `
             ${p.icon ? `<div class="eng-icon">${p.icon}</div>` : ''}
             <h3 class="eng-title">${p.title}</h3>
-            <p class="eng-prof">${category}</p>
-            <p class="eng-desc">${p.shortDesc || ''}</p>
-
-            <div class="eng-card-info">
-                <div><span>Специалистов</span><b>${specialists}</b></div>
-                <div><span>Средний возраст</span><b>${avgAge}</b></div>
-                <div><span>М / Ж</span><b>${gender}</b></div>
-                <div><span>Старт</span><b>${sal.start || '—'}</b></div>
-                <div><span>Медиана</span><b>${sal.median || '—'}</b></div>
-                <div><span>Потолок</span><b>${sal.peak || '—'}</b></div>
-            </div>
-
-            ${edu.duration ? `<p class="eng-card-edu"><span>Обучение</span> ${edu.duration}</p>` : ''}
-
-            ${growth.length ? `
-                <div class="eng-card-growth">
-                    <p class="eng-card-growth-title">Карьерный рост</p>
-                    <ul>
-                        ${growth.slice(0, 2).map(g => `<li><b>${g.title}</b> <span>(${g.period})</span><i>${g.salary}</i></li>`).join('')}
-                    </ul>
-                </div>
-            ` : ''}
         `;
         card.addEventListener('click', () => openModal(p));
         return card;
@@ -91,8 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function openModal(p) {
-        const overlay = document.getElementById('modalOverlay');
-        const modalContent = document.getElementById('modalContent');
         if (!overlay || !modalContent) return;
 
         const s = p.stats || {};
@@ -117,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modalContent.innerHTML = `
             <div class="modal-header">
-                <h2>${p.icon || ''} ${p.title}</h2>
+                <h2>${p.icon ? p.icon + ' ' : ''}${p.title}</h2>
                 <p class="eng-prof">${p.shortDesc || ''}</p>
             </div>
             <div class="modal-body">
@@ -146,15 +168,14 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.style.display = 'flex';
     }
 
-    document.getElementById('modalClose').addEventListener('click', () => {
-        const overlay = document.getElementById('modalOverlay');
+    if (modalClose) modalClose.addEventListener('click', () => {
         overlay.classList.remove('active');
         overlay.style.display = 'none';
     });
-    document.getElementById('modalOverlay').addEventListener('click', (e) => {
-        if (e.target === document.getElementById('modalOverlay')) {
-            e.target.classList.remove('active');
-            e.target.style.display = 'none';
+    if (overlay) overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            overlay.classList.remove('active');
+            overlay.style.display = 'none';
         }
     });
 
