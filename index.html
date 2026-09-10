@@ -1,60 +1,45 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>База данных профессий инженеров</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="База данных инженерных профессий: обязанности, образование, зарплаты, карьерный путь и типичный рабочий день.">
+<title>Профессии инженеров</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="eng-calendar-root">
-        <nav class="eng-tabs">
-            <a href="index.html" class="eng-tab active">Профессии</a>
-            <a href="calendar.html" class="eng-tab">Календарь праздников</a>
-            <a href="resources.html" class="eng-tab">Ресурсы сообщества<span class="age-badge">18+</span></a>
-            <a href="dictionary.html" class="eng-tab">Словарь инженера</a>
-            <a href="map.html" class="eng-tab">Карта обучения</a>
-            <a href="calculator.html" class="eng-tab">Калькуляторы</a>
-        </nav>
+<div class="eng-calendar-root">
+  <nav class="eng-tabs" aria-label="Основная навигация">
+    <a href="index.html" class="eng-tab active">Профессии</a>
+    <a href="calendar.html" class="eng-tab">Календарь</a>
+    <a href="resources.html" class="eng-tab">Ресурсы</a>
+    <a href="dictionary.html" class="eng-tab">Словарь</a>
+    <a href="map.html" class="eng-tab">Карта</a>
+    <a href="calculator.html" class="eng-tab">Калькуляторы</a>
+  </nav>
 
-        <main>
-            <div class="eng-filters" id="categories"></div>
-            <div class="eng-grid" id="professionsGrid"></div>
-        </main>
-    </div>
+  <header class="page-header">
+    <h1>Профессии инженеров</h1>
+    <p>Открой карточку, чтобы посмотреть подробности о профессии.</p>
+  </header>
 
-    <!-- Модальное окно -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
-            <button class="modal-close" id="modalClose">&times;</button>
-            <div class="modal-content" id="modalContent"></div>
-        </div>
-    </div>
+  <div class="eng-filters" id="categories" aria-label="Фильтр по категориям"></div>
+  <div class="eng-grid" id="professionsGrid"></div>
+</div>
 
-    <footer>
-        <div class="container">
-            <div class="footer-mission">
-                <p class="footer-mission-text">Этот проект — благотворительный. Он существует лишь благодаря упорству его создательницы.</p>
-                <p class="footer-mission-contact">По всем вопросам: <a href="https://t.me/evosif" class="footer-contact-link" target="_blank" rel="noopener noreferrer">@evosif</a> · <a href="mailto:eva.tselikina@ya.ru" class="footer-contact-link">eva.tselikina@ya.ru</a></p>
-            </div>
-            <div class="footer-links">
-                <a href="https://vk.ru/engigirling" class="footer-btn" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
-                <a href="https://t.me/enjigirling" class="footer-btn" target="_blank" rel="noopener noreferrer">Telegram-канал</a>
-            </div>
-            <div class="footer-donations">
-                <a href="https://web.tribute.tg/d/Mue" class="footer-btn footer-btn--donate" target="_blank" rel="noopener noreferrer">Поддержать (Tribute)</a>
-                <a href="https://pay.cloudtips.ru/p/72472d16" class="footer-btn footer-btn--donate" target="_blank" rel="noopener noreferrer">Поддержать (CloudTips)</a>
-            </div>
-            <div class="footer-theme">
-                <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">🌙</button>
-            </div>
-            <p class="footer-copy">© 2026 — База данных профессий инженеров</p>
-        </div>
-    </footer>
+<div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+  <article class="modal" role="dialog" aria-modal="true" aria-labelledby="modalContent">
+    <button class="modal-close" id="modalClose" type="button" aria-label="Закрыть">&times;</button>
+    <div class="modal-content" id="modalContent"></div>
+  </article>
+</div>
 
-    <script src="data.js"></script>
-    <script src="holiday-map.js"></script>
-    <script src="script.js"></script>
-    <script src="theme.js"></script>
+<footer>
+  <p>© 2026 — База данных профессий инженеров</p>
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Переключить тему">🌙</button>
+</footer>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

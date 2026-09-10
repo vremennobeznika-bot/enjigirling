@@ -1,184 +1,264 @@
 const PROFESSION_CATEGORIES = {
-    "civil-engineer": "Строительство",
-    "architect-engineer": "Строительство",
-    "road-engineer": "Строительство",
-    "bridge-engineer": "Строительство",
-    "tunnel-engineer": "Строительство",
-    "mechanical-engineer": "Машиностроение",
-    "automotive-engineer": "Машиностроение",
-    "mechatronics-engineer": "Машиностроение",
-    "power-engineer": "Энергетика",
-    "electrical-engineer": "Энергетика",
-    "nuclear-engineer": "Энергетика",
-    "aerospace-engineer": "Авиация и космос",
-    "space-engineer": "Авиация и космос",
-    "chemical-engineer": "Химия и нефтехимия",
-    "oil-gas-engineer": "Химия и нефтехимия",
-    "metallurgical-engineer": "Металлургия",
-    "mining-engineer": "Горное дело",
-    "geophysicist-engineer": "Геология и геофизика",
-    "environmental-engineer": "Экология",
-    "biomedical-engineer": "Биомедицина и биотех",
-    "biotech-engineer": "Биомедицина и биотех",
-    "robotics-engineer": "Робототехника",
-    "railway-engineer": "Железная дорога",
-    "shipbuilding-engineer": "Кораблестроение",
-    "instrumentation-engineer": "АСУ ТП и приборостроение",
-    "metrology-engineer": "Метрология и качество",
-    "quality-engineer": "Метрология и качество",
-    "food-engineer": "Пищевая промышленность",
-    "textile-engineer": "Текстильная промышленность",
-    "forest-engineer": "Лесная промышленность",
-    "telecom-engineer": "Связь и телекоммуникации",
-    "radio-engineer": "Радиотехника и электроника",
-    "microelectronics-engineer": "Радиотехника и электроника",
-    "water-engineer": "Водоснабжение и водоотведение",
-    "lighting-engineer": "Светотехника и оптика",
-    "optics-engineer": "Светотехника и оптика",
-    "laser-engineer": "Светотехника и оптика",
-    "acoustic-engineer": "Акустика",
-    "data-engineer": "IT",
-    "devops-engineer": "IT",
-    "ml-engineer": "IT",
-    "security-engineer": "IT",
-    "cloud-engineer": "IT",
-    "embedded-engineer": "IT",
-    "frontend-engineer": "IT",
-    "backend-engineer": "IT",
-    "qa-engineer": "IT",
-    "mobile-engineer": "IT",
-    "military-engineer": "Военное дело",
-    "polygraph-engineer": "Полиграфия",
-    "materials-engineer": "Материаловедение и нанотехнологии",
-    "nano-engineer": "Материаловедение и нанотехнологии",
-    "civil-defense-engineer": "ГО и ЧС",
-    "geodetic-engineer": "Геодезия и землеустройство",
-    "land-surveyor": "Геодезия и землеустройство",
-    "astronomer-engineer": "Астрономия",
-    "restoration-engineer": "Реставрация",
-    "standardization-engineer": "Стандартизация",
-    "patent-engineer": "Патентоведение"
+  "civil-engineer": "Строительство и инфраструктура",
+  "architect-engineer": "Строительство и инфраструктура",
+  "road-engineer": "Строительство и инфраструктура",
+  "mechanical-engineer": "Машиностроение и транспорт",
+  "automotive-engineer": "Машиностроение и транспорт",
+  "railway-engineer": "Машиностроение и транспорт",
+  "shipbuilding-engineer": "Машиностроение и транспорт",
+  "power-engineer": "Энергетика",
+  "electrical-engineer": "Энергетика",
+  "nuclear-engineer": "Энергетика",
+  "aerospace-engineer": "Авиация и космос",
+  "space-engineer": "Авиация и космос",
+  "chemical-engineer": "Химия и нефтегаз",
+  "oil-gas-engineer": "Химия и нефтегаз",
+  "metallurgical-engineer": "Металлургия и добыча",
+  "mining-engineer": "Металлургия и добыча",
+  "materials-engineer": "Материалы и технологии",
+  "environmental-engineer": "Экология и природные системы",
+  "water-engineer": "Экология и природные системы",
+  "forest-engineer": "Экология и природные системы",
+  "biomedical-engineer": "Биомедицина",
+  "robotics-engineer": "Автоматизация и робототехника",
+  "instrumentation-engineer": "Автоматизация и робототехника",
+  "lighting-engineer": "Электротехника и светотехника",
+  "food-engineer": "Промышленное производство",
+  "textile-engineer": "Промышленное производство",
+  "polygraph-engineer": "Промышленное производство",
+  "telecom-engineer": "Связь и электроника",
+  "embedded-engineer": "Связь и электроника",
+  "military-engineer": "Безопасность и ГО",
+  "civil-defense-engineer": "Безопасность и ГО",
+  "geodetic-engineer": "Геодезия и картография",
+  "astronomer-engineer": "Наука и техническая экспертиза",
+  "restoration-engineer": "Наука и техническая экспертиза",
+  "standardization-engineer": "Наука и техническая экспертиза",
+  "patent-engineer": "Наука и техническая экспертиза",
+  "data-engineer": "IT и данные",
+  "devops-engineer": "IT и данные",
+  "ml-engineer": "IT и данные",
+  "security-engineer": "IT и данные",
+  "cloud-engineer": "IT и данные",
+  "frontend-engineer": "IT и данные",
+  "backend-engineer": "IT и данные",
+  "qa-engineer": "IT и данные",
+  "mobile-engineer": "IT и данные"
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-    const grid = document.getElementById('professionsGrid');
-    const categoriesEl = document.getElementById('categories');
-    const overlay = document.getElementById('modalOverlay');
-    const modalContent = document.getElementById('modalContent');
-    const modalClose = document.getElementById('modalClose');
+const REGION_NAMES = {
+  central: "ЦФО",
+  northwest: "СЗФО",
+  south: "ЮФО",
+  northcaucasus: "СКФО",
+  volga: "ПФО",
+  ural: "УФО",
+  siberia: "СФО",
+  fareast: "ДФО"
+};
 
-    let activeCategory = 'Все';
+function escapeHTML(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
 
-    function getCategories() {
-        const cats = new Set();
-        professionsData.forEach(p => {
-            cats.add(PROFESSION_CATEGORIES[p.id] || 'Прочее');
-        });
-        return Array.from(cats).sort((a, b) => a.localeCompare(b, 'ru'));
-    }
+function valueOrDash(value) {
+  return value ? escapeHTML(value) : "—";
+}
 
-    function renderFilters() {
-        if (!categoriesEl) return;
-        const cats = ['Все', ...getCategories()];
-        categoriesEl.innerHTML = '';
-        cats.forEach(cat => {
-            const btn = document.createElement('button');
-            btn.className = 'eng-filter-btn' + (cat === activeCategory ? ' active' : '');
-            btn.textContent = cat;
-            btn.addEventListener('click', () => {
-                activeCategory = cat;
-                renderFilters();
-                renderGrid();
-            });
-            categoriesEl.appendChild(btn);
-        });
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  const grid = document.getElementById("professionsGrid");
+  const categoriesEl = document.getElementById("categories");
+  const modalOverlay = document.getElementById("modalOverlay");
+  const modalContent = document.getElementById("modalContent");
+  const modalClose = document.getElementById("modalClose");
 
-    function buildCard(p) {
-        const card = document.createElement('article');
-        card.className = 'eng-card';
-        card.innerHTML = `
-            ${p.icon ? `<div class="eng-icon">${p.icon}</div>` : ''}
-            <h3 class="eng-title">${p.title}</h3>
-        `;
-        card.addEventListener('click', () => openModal(p));
-        return card;
-    }
+  if (!grid || !categoriesEl || !modalOverlay || !modalContent) return;
 
-    function renderGrid() {
-        if (!grid) return;
-        grid.innerHTML = '';
-        const items = activeCategory === 'Все'
-            ? professionsData
-            : professionsData.filter(p => (PROFESSION_CATEGORIES[p.id] || 'Прочее') === activeCategory);
-        items.forEach(p => grid.appendChild(buildCard(p)));
-    }
+  let activeCategory = "Все";
 
-    function openModal(p) {
-        if (!overlay || !modalContent) return;
+  const getCategory = (profession) => PROFESSION_CATEGORIES[profession.id] || "Прочее";
 
-        const s = p.stats || {};
-        const edu = p.education || {};
-        const sal = p.salary || {};
-        const growth = (p.careerGrowth || [])
-            .map(g => `<li><strong>${g.title}</strong> (${g.period}) — ${g.salary}</li>`)
-            .join('');
-        const courses = (edu.courses || []).map(c => `<li>${c}</li>`).join('');
-        const regions = sal.regions
-            ? `<ul class="modal-regions">
-                   <li><span>ЦФО</span><b>${sal.regions.central || '—'}</b></li>
-                   <li><span>СЗФО</span><b>${sal.regions.northwest || '—'}</b></li>
-                   <li><span>ЮФО</span><b>${sal.regions.south || '—'}</b></li>
-                   <li><span>СКФО</span><b>${sal.regions.northcaucasus || '—'}</b></li>
-                   <li><span>ПФО</span><b>${sal.regions.volga || '—'}</b></li>
-                   <li><span>УФО</span><b>${sal.regions.ural || '—'}</b></li>
-                   <li><span>СФО</span><b>${sal.regions.siberia || '—'}</b></li>
-                   <li><span>ДФО</span><b>${sal.regions.fareast || '—'}</b></li>
-               </ul>`
-            : '';
+  function getCategories() {
+    return [...new Set(professionsData.map(getCategory))].sort((a, b) => a.localeCompare(b, "ru"));
+  }
 
-        modalContent.innerHTML = `
-            <div class="modal-header">
-                <h2>${p.icon ? p.icon + ' ' : ''}${p.title}</h2>
-                <p class="eng-prof">${p.shortDesc || ''}</p>
-            </div>
-            <div class="modal-body">
-                ${s.specialists ? `<p><strong>Специалистов:</strong> ${s.specialists.toLocaleString('ru-RU')}</p>` : ''}
-                ${s.avgAge ? `<p><strong>Средний возраст:</strong> ${s.avgAge} лет</p>` : ''}
-                ${s.genderRatio ? `<p><strong>Гендерное соотношение:</strong> ${s.genderRatio}</p>` : ''}
-
-                <h3>Образование</h3>
-                ${edu.duration ? `<p><strong>Срок:</strong> ${edu.duration}</p>` : ''}
-                ${edu.requirements ? `<p><strong>Требования:</strong> ${edu.requirements}</p>` : ''}
-                ${courses ? `<ul>${courses}</ul>` : ''}
-
-                <h3>Зарплата</h3>
-                ${sal.start ? `<p><strong>Старт:</strong> ${sal.start}</p>` : ''}
-                ${sal.median ? `<p><strong>Медиана:</strong> ${sal.median}</p>` : ''}
-                ${sal.peak ? `<p><strong>Потолок:</strong> ${sal.peak}</p>` : ''}
-                ${regions}
-
-                ${growth ? `<h3>Карьерный рост</h3><ul>${growth}</ul>` : ''}
-
-                ${p.easy ? `<h3>Плюсы</h3><p>${p.easy}</p>` : ''}
-                ${p.hard ? `<h3>Минусы</h3><p>${p.hard}</p>` : ''}
-            </div>
-        `;
-        overlay.classList.add('active');
-        overlay.style.display = 'flex';
-    }
-
-    if (modalClose) modalClose.addEventListener('click', () => {
-        overlay.classList.remove('active');
-        overlay.style.display = 'none';
+  function renderFilters() {
+    categoriesEl.innerHTML = "";
+    ["Все", ...getCategories()].forEach((category) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = `eng-filter-btn${category === activeCategory ? " active" : ""}`;
+      button.textContent = category;
+      button.addEventListener("click", () => {
+        activeCategory = category;
+        renderFilters();
+        renderGrid();
+      });
+      categoriesEl.appendChild(button);
     });
-    if (overlay) overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) {
-            overlay.classList.remove('active');
-            overlay.style.display = 'none';
-        }
+  }
+
+  function buildCard(profession) {
+    const card = document.createElement("article");
+    card.className = "eng-card";
+    card.tabIndex = 0;
+    card.setAttribute("role", "button");
+    card.setAttribute("aria-label", `Открыть профессию: ${profession.title}`);
+
+    card.innerHTML = `
+      <div class="eng-icon" aria-hidden="true">${escapeHTML(profession.icon || "⚙️")}</div>
+      <h3 class="eng-title">${escapeHTML(profession.title)}</h3>
+    `;
+
+    const open = () => openModal(profession);
+    card.addEventListener("click", open);
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        open();
+      }
     });
 
-    renderFilters();
-    renderGrid();
+    return card;
+  }
+
+  function renderGrid() {
+    const items = activeCategory === "Все"
+      ? professionsData
+      : professionsData.filter((profession) => getCategory(profession) === activeCategory);
+
+    grid.innerHTML = "";
+    items.forEach((profession) => grid.appendChild(buildCard(profession)));
+  }
+
+  function renderRegions(regions) {
+    if (!regions) return "";
+    const rows = Object.entries(REGION_NAMES)
+      .filter(([key]) => regions[key])
+      .map(([key, name]) => `<div class="region-row"><span>${name}</span><strong>${escapeHTML(regions[key])}</strong></div>`)
+      .join("");
+    return rows ? `<div class="region-list">${rows}</div>` : "";
+  }
+
+  function renderTypicalDay(day) {
+    if (!day) return "";
+    const labels = { morning: "Утро", midday: "День", afternoon: "Обед", evening: "Вторая половина дня" };
+    const rows = Object.entries(labels)
+      .filter(([key]) => day[key])
+      .map(([key, label]) => `<div class="day-row"><span>${label}</span><strong>${escapeHTML(day[key])}</strong></div>`)
+      .join("");
+    return rows ? `<div class="day-list">${rows}</div>` : "";
+  }
+
+  function openModal(profession) {
+    const stats = profession.stats || {};
+    const education = profession.education || {};
+    const salary = profession.salary || {};
+    const growth = profession.careerGrowth || [];
+
+    modalContent.innerHTML = `
+      <div class="modal-header">
+        <div class="modal-icon" aria-hidden="true">${escapeHTML(profession.icon || "⚙️")}</div>
+        <div>
+          <div class="modal-category">${escapeHTML(getCategory(profession))}</div>
+          <h2>${escapeHTML(profession.title)}</h2>
+        </div>
+      </div>
+
+      <section class="profession-section profession-intro">
+        <h3>Чем занимается</h3>
+        <p>${valueOrDash(profession.shortDesc)}</p>
+      </section>
+
+      <section class="profession-section">
+        <h3>Профиль профессии</h3>
+        <div class="info-grid">
+          ${stats.specialists ? `<div class="info-item"><span>Специалистов</span><strong>${Number(stats.specialists).toLocaleString("ru-RU")}</strong></div>` : ""}
+          ${stats.avgAge ? `<div class="info-item"><span>Средний возраст</span><strong>${escapeHTML(stats.avgAge)} лет</strong></div>` : ""}
+          ${stats.genderRatio ? `<div class="info-item"><span>Соотношение</span><strong>${escapeHTML(stats.genderRatio)}</strong></div>` : ""}
+        </div>
+      </section>
+
+      <section class="profession-section">
+        <h3>Образование и подготовка</h3>
+        ${education.duration ? `<p><strong>Срок обучения:</strong> ${escapeHTML(education.duration)}</p>` : ""}
+        ${education.requirements ? `<p><strong>База:</strong> ${escapeHTML(education.requirements)}</p>` : ""}
+        ${education.courses?.length ? `<p class="sub-label">Инструменты и направления</p><div class="tag-list">${education.courses.map((course) => `<span>${escapeHTML(course)}</span>`).join("")}</div>` : ""}
+      </section>
+
+      <section class="profession-section">
+        <h3>Зарплата</h3>
+        <div class="salary-grid">
+          ${salary.start ? `<div><span>Старт</span><strong>${escapeHTML(salary.start)}</strong></div>` : ""}
+          ${salary.median ? `<div><span>Медиана</span><strong>${escapeHTML(salary.median)}</strong></div>` : ""}
+          ${salary.peak ? `<div><span>Верхний уровень</span><strong>${escapeHTML(salary.peak)}</strong></div>` : ""}
+        </div>
+        ${salary.regions ? `<p class="sub-label">По регионам</p>${renderRegions(salary.regions)}` : ""}
+      </section>
+
+      ${growth.length ? `
+        <section class="profession-section">
+          <h3>Карьерный путь</h3>
+          <div class="career-list">
+            ${growth.map((step, index) => `
+              <div class="career-row">
+                <span class="career-number">${index + 1}</span>
+                <div><strong>${escapeHTML(step.title)}</strong><small>${escapeHTML(step.period)}</small></div>
+                <b>${escapeHTML(step.salary)}</b>
+              </div>
+            `).join("")}
+          </div>
+        </section>` : ""}
+
+      ${profession.typicalDay ? `
+        <section class="profession-section">
+          <h3>Типичный рабочий день</h3>
+          ${renderTypicalDay(profession.typicalDay)}
+        </section>` : ""}
+
+      ${(profession.easy || profession.hard) ? `
+        <section class="profession-section pros-cons">
+          ${profession.easy ? `<div><h3>Что в работе нравится</h3><p>${escapeHTML(profession.easy)}</p></div>` : ""}
+          ${profession.hard ? `<div><h3>Сложности</h3><p>${escapeHTML(profession.hard)}</p></div>` : ""}
+        </section>` : ""}
+    `;
+
+    modalOverlay.classList.add("active");
+    document.body.classList.add("modal-open");
+    modalClose?.focus();
+  }
+
+  function closeModal() {
+    modalOverlay.classList.remove("active");
+    document.body.classList.remove("modal-open");
+  }
+
+  modalClose?.addEventListener("click", closeModal);
+  modalOverlay.addEventListener("click", (event) => {
+    if (event.target === modalOverlay) closeModal();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && modalOverlay.classList.contains("active")) closeModal();
+  });
+
+  const themeToggle = document.getElementById("themeToggle");
+  if (themeToggle) {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") document.body.classList.add("theme-dark");
+    themeToggle.textContent = document.body.classList.contains("theme-dark") ? "☀️" : "🌙";
+
+    themeToggle.addEventListener("click", () => {
+      const isDark = document.body.classList.toggle("theme-dark");
+      themeToggle.textContent = isDark ? "☀️" : "🌙";
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+  }
+
+  renderFilters();
+  renderGrid();
 });
