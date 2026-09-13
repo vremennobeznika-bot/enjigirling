@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.className = 'eng-card';
             card.innerHTML = `
                 <h3 class="eng-title">${item.term}</h3>
+                <span class="dictionary-definition-label">Определение</span>
                 <p class="eng-desc">${item.def}</p>
             `;
             grid.appendChild(card);

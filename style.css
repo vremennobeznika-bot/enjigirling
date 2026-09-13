@@ -1169,3 +1169,200 @@ body.modal-open { overflow: hidden; }
 
 .site-page .eng-card:hover,
 .site-page .benefit-card:hover { transform: translateY(-2px); }
+
+/* ===== Финальная полировка: единый стиль карточек и читаемость тем ===== */
+:root {
+  --card-bg: #ffffff;
+  --card-text: #111111;
+  --card-muted: #444444;
+  --soft-bg: #f5f5f5;
+  --soft-border: rgba(0,0,0,.16);
+}
+
+body.theme-dark {
+  --card-bg: #242424;
+  --card-text: #f5f5f5;
+  --card-muted: #d0d0d0;
+  --soft-bg: #303030;
+  --soft-border: rgba(255,255,255,.22);
+}
+
+/* Белые/светлые блоки больше не получают белый текст в тёмной теме */
+.site-page .eng-card,
+.site-page .benefit-card,
+.site-page .resource-card,
+.site-page .map-panel,
+.site-page .map-canvas,
+.site-page .calc-layout,
+.site-page .calc-controls,
+.site-page .table-wrap,
+.site-page .info-panel,
+.site-page .section-card,
+.site-page .dictionary-card,
+.site-page .eng-grid > article {
+  background: var(--card-bg);
+  color: var(--card-text);
+  border-color: var(--soft-border);
+}
+
+.site-page .eng-card .eng-title,
+.site-page .eng-card .eng-desc,
+.site-page .benefit-card .benefit-title,
+.site-page .benefit-card p,
+.site-page .resource-card .eng-title,
+.site-page .resource-card .eng-desc,
+.site-page .resource-card .resource-type,
+.site-page .map-panel,
+.site-page .map-panel p,
+.site-page .map-panel h1,
+.site-page .map-panel h2,
+.site-page .map-panel h3,
+.site-page .map-panel h4,
+.site-page .map-panel span,
+.site-page .map-panel strong,
+.site-page .calc-layout,
+.site-page .calc-layout label,
+.site-page .dictionary-card,
+.site-page .dictionary-card .eng-title,
+.site-page .dictionary-card .eng-desc {
+  color: var(--card-text);
+}
+
+.site-page .eng-card,
+.site-page .benefit-card,
+.site-page .resource-card,
+.site-page .map-panel,
+.site-page .map-canvas,
+.site-page .calc-layout,
+.site-page .calc-controls,
+.site-page .calc-result,
+.site-page .dictionary-card,
+.site-page .table-wrap,
+.site-page .info-panel,
+.site-page .section-card,
+.site-page .map-uni-card,
+.site-page .map-explain,
+.site-page .map-placeholder,
+.site-page .info-item,
+.site-page .salary-grid > div,
+.site-page .region-row,
+.site-page .day-row,
+.site-page .career-row {
+  border-radius: 18px;
+}
+
+/* Профессии: скругляются и внутренние элементы открытой карточки */
+.profession-section {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.profession-section p,
+.profession-section strong,
+.profession-section small,
+.region-row span,
+.region-row strong,
+.day-row span,
+.day-row strong {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.info-grid,
+.salary-grid,
+.region-list,
+.day-list,
+.career-list {
+  gap: 12px;
+}
+.info-item,
+.salary-grid > div,
+.region-row,
+.day-row,
+.career-row {
+  border: 1px solid var(--soft-border);
+  background: var(--soft-bg);
+}
+
+/* Карточка профессии не обрезает содержимое */
+.site-page .eng-card { overflow: hidden; }
+
+/* Техникумы/карточки карты: цельная рамка со всеми углами */
+.benefit-card,
+.map-uni-card,
+.map-explain,
+.map-placeholder {
+  overflow: hidden;
+}
+
+/* Словарь: термин + толкование всегда видны внутри карточки */
+.site-page .eng-card .eng-desc {
+  display: block;
+  max-height: none;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+.dictionary-definition-label {
+  display: block;
+  margin: 2px 0 7px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--card-muted);
+}
+
+/* Белые блоки в тёмной теме: контраст текста и элементов формы */
+body.theme-dark .site-page input,
+body.theme-dark .site-page select,
+body.theme-dark .site-page textarea,
+body.theme-dark .site-page .resource-search {
+  background: var(--card-bg);
+  color: var(--card-text);
+  border-color: var(--soft-border);
+}
+body.theme-dark .site-page input::placeholder,
+body.theme-dark .site-page .resource-search::placeholder {
+  color: #bdbdbd;
+}
+body.theme-dark .site-page .map-uni-card,
+body.theme-dark .site-page .map-explain,
+body.theme-dark .site-page .map-placeholder,
+body.theme-dark .site-page .info-item,
+body.theme-dark .site-page .salary-grid > div,
+body.theme-dark .site-page .region-row,
+body.theme-dark .site-page .day-row,
+body.theme-dark .site-page .career-row {
+  background: #303030;
+  color: #f5f5f5;
+}
+
+/* Единое скругление кнопок/фильтров */
+.site-page .eng-filter-btn,
+.site-page .eng-btn,
+.site-page button,
+.site-page select,
+.site-page input,
+.site-page textarea,
+.site-page .resource-filter-btn,
+.site-page .filter-btn,
+.site-page .calc-btn,
+.site-page .map-reset {
+  border-radius: 14px;
+}
+
+.modal {
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+@media (max-width: 680px) {
+  .modal { border-radius: 18px; }
+  .site-page .eng-card,
+  .site-page .benefit-card,
+  .site-page .resource-card { border-radius: 16px; }
+}
