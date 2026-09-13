@@ -1120,3 +1120,52 @@ body.modal-open { overflow: hidden; }
   .resource-filter-row{flex-direction:column}
   .resource-search{min-width:0;width:100%}
 }
+
+/* ===== Rounded calendar-style UI on every page ===== */
+:root { --radius: 18px; }
+
+.site-page .eng-card,
+.site-page .benefit-card,
+.site-page .map-panel,
+.site-page .map-canvas,
+.site-page .calc-controls,
+.site-page .calc-result,
+.site-page .dictionary-card,
+.site-page .resource-card,
+.site-page .table-wrap,
+.site-page .info-panel,
+.site-page .section-card {
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.site-page button,
+.site-page select,
+.site-page input,
+.site-page textarea,
+.site-page .eng-btn,
+.site-page .footer-btn,
+.site-page .resource-filter-btn,
+.site-page .filter-btn,
+.site-page .calc-btn,
+.site-page .map-reset {
+  border-radius: 12px;
+}
+
+.site-page .career-number { border-radius: 10px; }
+.site-page table { border-collapse: separate; border-spacing: 0; overflow: hidden; border-radius: 14px; }
+.site-page th:first-child { border-top-left-radius: 14px; }
+.site-page th:last-child { border-top-right-radius: 14px; }
+.site-page tr:last-child td:first-child { border-bottom-left-radius: 14px; }
+.site-page tr:last-child td:last-child { border-bottom-right-radius: 14px; }
+
+.site-page .map-layout,
+.site-page .calc-layout,
+.site-page .dictionary-grid,
+.site-page .resource-grid { border-radius: 18px; }
+
+.site-page .resource-buttons > *,
+.site-page .eng-filters > * { border-radius: 12px; }
+
+.site-page .eng-card:hover,
+.site-page .benefit-card:hover { transform: translateY(-2px); }
