@@ -18,7 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
     types.forEach(type => {
         const btn = document.createElement('button');
         btn.className = 'eng-filter-btn' + (type === 'Все' ? ' active' : '');
-        btn.textContent = type;
+        const filterLabels = {
+            'Дружественные каналы': 'Каналы',
+            'Чаты в Telegram': 'Чаты',
+            'Платформы для разработок': 'Платформы'
+        };
+        btn.textContent = filterLabels[type] || type;
         btn.addEventListener('click', () => {
             activeType = type;
             buttons.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
