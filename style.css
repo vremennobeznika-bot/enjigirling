@@ -1082,3 +1082,41 @@ body.modal-open { overflow: hidden; }
   .pros-cons { grid-template-columns: 1fr; gap: 0; }
   .pros-cons > div + div { border-left: 0; border-top: 1px solid var(--border); padding: 24px 0 0; margin-top: 24px; }
 }
+
+
+/* ===== Единый визуальный слой страниц в стиле календаря ===== */
+.site-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 28px 20px 50px;
+}
+.site-page > .page-header { margin-bottom: 22px; }
+.site-page .eng-filters { margin: 20px 0 18px; }
+.site-page .eng-grid { align-items: stretch; }
+.site-page .eng-card {
+  min-width: 0;
+  border: 1px solid rgba(127,127,127,.22);
+  border-radius: 18px;
+  background: var(--card-bg, #fff);
+  box-shadow: 0 5px 20px rgba(0,0,0,.05);
+  overflow-wrap: anywhere;
+}
+.site-page .eng-card--link { text-decoration: none; color: inherit; }
+.resource-filter-row { display:flex; gap:12px; align-items:stretch; flex-wrap:wrap; }
+.resource-buttons { display:flex; gap:8px; flex-wrap:wrap; flex:1 1 600px; }
+.resource-search {
+  flex: 1 1 260px; min-width:220px; box-sizing:border-box;
+  padding:12px 14px; border:1px solid rgba(127,127,127,.28); border-radius:12px;
+  background:var(--card-bg,#fff); color:inherit; font:inherit; outline:none;
+}
+.resource-search:focus { border-color:currentColor; }
+.resource-card { display:flex; flex-direction:column; align-items:flex-start; text-align:left; min-height:190px; padding:22px; }
+.resource-card .eng-title { margin-top:8px; margin-bottom:10px; }
+.resource-card .eng-desc { flex:1; line-height:1.5; }
+.resource-type { font-size:12px; text-transform:uppercase; letter-spacing:.06em; opacity:.58; font-weight:700; }
+.eng-resource-link { margin-top:14px; font-size:13px; font-weight:700; }
+@media(max-width:800px){
+  .site-page{padding-left:14px;padding-right:14px}
+  .resource-filter-row{flex-direction:column}
+  .resource-search{min-width:0;width:100%}
+}

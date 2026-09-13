@@ -1,49 +1,51 @@
 document.addEventListener('DOMContentLoaded', () => {
     const grid = document.getElementById('resourcesGrid');
     const filter = document.getElementById('resourcesFilter');
+    if (!grid || !filter || !Array.isArray(window.resources || resources)) return;
+    const data = window.resources || resources;
+    const types = ['Все', ...Array.from(new Set(data.map(r => r.type).filter(Boolean)))];
+    let activeType = 'Все';
+    let query = '';
 
-    const types = ['Все', 'Журналы', 'Форумы', 'Платформы для разработок', 'Чаты в Telegram', 'Дружественные каналы'];
-
-    let activeType = null;
+    filter.innerHTML = `
+      <div class="resource-filter-row">
+        <div class="resource-buttons" id="resourceTypeButtons"></div>
+        <input class="resource-search" id="resourceSearch" type="search" placeholder="Поиск по ресурсам" autocomplete="off">
+      </div>`;
+    const buttons = document.getElementById('resourceTypeButtons');
+    const search = document.getElementById('resourceSearch');
 
     types.forEach(type => {
         const btn = document.createElement('button');
-        btn.className = 'eng-filter-btn';
+        btn.className = 'eng-filter-btn' + (type === 'Все' ? ' active' : '');
         btn.textContent = type;
-        btn.dataset.type = type;
-        if (type === 'Все') btn.classList.add('active');
         btn.addEventListener('click', () => {
-            if (activeType === type) {
-                activeType = null;
-                document.querySelectorAll('#resourcesFilter button').forEach(b => b.classList.remove('active'));
-                renderResources(resources);
-            } else {
-                activeType = type;
-                document.querySelectorAll('#resourcesFilter button').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                renderResources(type === 'Все' ? resources : resources.filter(r => r.type === type));
-            }
+            activeType = type;
+            buttons.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
+            render();
         });
-        filter.appendChild(btn);
+        buttons.appendChild(btn);
     });
 
-    function renderResources(items) {
-        grid.innerHTML = '';
-        items.forEach(item => {
-            const card = document.createElement('a');
-            card.className = 'eng-card eng-card--link';
-            card.href = item.link;
-            card.target = '_blank';
-            card.rel = 'noopener noreferrer';
+    search.addEventListener('input', () => { query = search.value.trim().toLocaleLowerCase('ru-RU'); render(); });
 
-            card.innerHTML = `
-                <h3 class="eng-title">${item.name}</h3>
-                <p class="eng-desc">${item.desc}</p>
-                <span class="eng-resource-link">Перейти →</span>
-            `;
-            grid.appendChild(card);
-        });
+    function esc(value) {
+        return String(value ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
     }
-
-    renderResources(resources);
+    function render() {
+        const items = data.filter(item => {
+            const typeOk = activeType === 'Все' || item.type === activeType;
+            const hay = `${item.name || ''} ${item.desc || ''} ${item.type || ''}`.toLocaleLowerCase('ru-RU');
+            return typeOk && (!query || hay.includes(query));
+        });
+        grid.innerHTML = items.map(item => `
+          <a class="eng-card eng-card--link resource-card" href="${esc(item.link)}" target="_blank" rel="noopener noreferrer">
+            <div class="resource-type">${esc(item.type || 'Ресурс')}</div>
+            <h3 class="eng-title">${esc(item.name)}</h3>
+            <p class="eng-desc">${esc(item.desc)}</p>
+            <span class="eng-resource-link">Перейти →</span>
+          </a>`).join('');
+        if (!items.length) grid.innerHTML = '<p class="eng-empty">Ничего не найдено.</p>';
+    }
+    render();
 });
