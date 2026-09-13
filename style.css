@@ -1366,3 +1366,149 @@ body.theme-dark .site-page .career-row {
   .site-page .benefit-card,
   .site-page .resource-card { border-radius: 16px; }
 }
+
+/* ===== FINAL UI FIX: full profession modal + rounded inner blocks + complete map frames ===== */
+
+/* Внешняя карточка профессии — единый цельный контейнер */
+.modal {
+  box-sizing: border-box;
+  width: min(820px, 100%);
+  max-width: 820px;
+  max-height: calc(100vh - 32px);
+  padding: 34px;
+  border: 1px solid var(--border);
+  border-radius: 24px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  background: var(--card-bg, #fff);
+  color: var(--card-text, #111);
+}
+
+/* Все информационные блоки внутри профессии — мягко округлённые */
+.modal .info-item,
+.modal .salary-grid > div,
+.modal .region-row,
+.modal .day-row,
+.modal .career-row,
+.modal .tag-list span {
+  box-sizing: border-box;
+  border-radius: 16px !important;
+  overflow-wrap: anywhere;
+}
+
+.modal .info-grid,
+.modal .salary-grid {
+  gap: 14px;
+}
+
+.modal .info-item,
+.modal .salary-grid > div {
+  min-height: 82px;
+  padding: 16px;
+}
+
+.modal .region-list,
+.modal .day-list,
+.modal .career-list {
+  border-top: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.modal .region-row,
+.modal .day-row,
+.modal .career-row {
+  border: 1px solid var(--soft-border);
+  background: var(--soft-bg);
+}
+
+.modal .tag-list span {
+  background: var(--soft-bg);
+  border: 1px solid var(--soft-border);
+}
+
+/* На мобильном не обрезаем нижнюю часть единой карточки */
+@media (max-width: 680px) {
+  .modal {
+    width: 100%;
+    max-width: none;
+    max-height: calc(100vh - 20px);
+    padding: 24px 18px;
+    border-radius: 22px !important;
+  }
+  .modal .info-grid,
+  .modal .salary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== Карта обучения: рамки вузов/техникумов без обрезанных углов ===== */
+.site-page .map-layout {
+  border-radius: 22px !important;
+}
+
+.site-page .map-canvas {
+  box-sizing: border-box;
+  border-radius: 22px !important;
+  overflow: hidden;
+}
+
+.site-page .map-sidebar {
+  box-sizing: border-box;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  border-radius: 22px !important;
+  overflow: visible;
+}
+
+.site-page .map-panel {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 22px !important;
+  padding: 20px;
+  background: var(--bg);
+  overflow: visible;
+}
+
+.site-page .map-toggle {
+  width: 100%;
+}
+
+.site-page .map-toggle .eng-filter-btn {
+  box-sizing: border-box;
+  border-radius: 18px !important;
+}
+
+.site-page .map-uni-list {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.site-page .map-uni-card {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 18px !important;
+  padding: 16px;
+  background: var(--bg-block);
+  overflow: visible;
+}
+
+.site-page .map-uni-profile {
+  border-radius: 12px !important;
+}
+
+.site-page .map-explain,
+.site-page .map-placeholder {
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 18px !important;
+  overflow: visible;
+}
+
+/* Убираем квадратный внешний контейнер вокруг переключателей/списка */
+.site-page .map-reset {
+  border-radius: 18px !important;
+}
